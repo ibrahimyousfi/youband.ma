@@ -15,8 +15,12 @@ function initCountdown(config) {
     const updateDisplay = () => {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-        if (elements.countdown) elements.countdown.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        if (elements.progressBar) elements.progressBar.style.width = `${((initialTime - timeLeft) / initialTime * 100)}%`;
+        if (elements.countdown) {
+            elements.countdown.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+        if (elements.progressBar) {
+            elements.progressBar.style.width = `${((initialTime - timeLeft) / initialTime * 100)}%`;
+        }
     };
     
     const interval = setInterval(() => {
@@ -30,9 +34,7 @@ function initCountdown(config) {
                 if (elements.mainContent) {
                     elements.mainContent.classList.remove('d-none');
                     requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            window.scrollTo({ top: elements.mainContent.offsetTop - 50, behavior: 'smooth' });
-                        });
+                        window.scrollTo({ top: elements.mainContent.offsetTop - 50, behavior: 'smooth' });
                     });
                 }
             }, 300);
@@ -54,45 +56,110 @@ function preventVideoPause(videoId) {
     });
 }
 
-function initFormSubmission(config) {
-    const { formId, googleScriptUrl, redirectUrl, formName, getFormData } = config;
+function initMultiStepForm(config) {
+    const { formId, googleScriptUrl, redirectUrl, formName } = config;
     
     const form = document.getElementById(formId);
     if (!form) return;
     
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    const steps = form.querySelectorAll('.form-step');
+    let currentStep = 0;
+    const totalSteps = steps.length;
+    
+    const stepIndicator = document.querySelector('.step-indicator-circle');
+    
+    function updateProgress() {
+        if (stepIndicator) stepIndicator.textContent = `${currentStep + 1} / ${totalSteps}`;
+    }
+    
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index === stepIndex);
+        });
+        updateProgress();
         
-        const formData = new FormData(form);
-        const data = new URLSearchParams();
-        data.append('form_name', formName || 'Form');
-        
-        // Add form data first
-        if (getFormData) {
-            const customData = getFormData(formData);
-            for (const [key, value] of Object.entries(customData)) {
-                if (value) data.append(key, value);
+        const currentStepElement = steps[stepIndex];
+        if (currentStepElement) {
+            const input = currentStepElement.querySelector('input, select, textarea');
+            if (input && input.type !== 'hidden') {
+                setTimeout(() => input.focus(), 100);
             }
         }
+    }
+    
+    function validateStep() {
+        const fields = steps[currentStep].querySelectorAll('[required]');
+        let isValid = true;
+        fields.forEach(field => {
+            const isEmpty = !field.value.trim();
+            field.classList.toggle('is-invalid', isEmpty);
+            if (isEmpty) isValid = false;
+        });
+        return isValid;
+    }
+    
+    function nextStep() {
+        if (!validateStep()) return;
+        if (currentStep < totalSteps - 1) {
+            showStep(++currentStep);
+        } else {
+            submitForm();
+        }
+    }
+    
+    function prevStep() {
+        if (currentStep > 0) showStep(--currentStep);
+    }
+    
+    function getDeviceType() {
+        const ua = navigator.userAgent;
+        if (/iPad/.test(ua)) return 'Tablet';
+        return /Mobile|Android|iPhone/.test(ua) ? 'Mobile' : 'Desktop';
+    }
+    
+    function submitForm() {
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
         
-        // Add timestamp, device type, and user agent at the end
-        data.append('timestamp', new Date().toLocaleString('en-US'));
-        data.append('device_type', /Mobile|Android|iPhone|iPad/.test(navigator.userAgent) ? (/iPad/.test(navigator.userAgent) ? 'Tablet' : 'Mobile') : 'Desktop');
-        data.append('user_agent', navigator.userAgent || 'Unknown');
+        params.append('form_name', formName || 'Form');
+        for (const [key, value] of formData.entries()) {
+            if (value) params.append(key, value);
+        }
+        params.append('timestamp', new Date().toLocaleString('en-US'));
+        params.append('device_type', getDeviceType());
+        params.append('user_agent', navigator.userAgent || 'Unknown');
         
         if (googleScriptUrl) {
             fetch(googleScriptUrl, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: data.toString()
-            });
+                body: params.toString()
+            }).catch(() => {});
         }
         
-        form.reset();
         setTimeout(() => {
             window.location.href = redirectUrl;
-        }, 200);
+        }, 100);
+    }
+    
+    const handleClick = (selector, handler) => {
+        form.querySelectorAll(selector).forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handler();
+            });
+        });
+    };
+    
+    handleClick('.btn-next', nextStep);
+    handleClick('.btn-prev', prevStep);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitForm();
     });
+    
+    showStep(0);
 }
+
 

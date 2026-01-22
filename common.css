@@ -1,7 +1,6 @@
 :root {
     --primary-color: #B8941F;
     --primary-hover: #B8941F;
-    --primary-gradient: #B8941F;
 }
 
 * { font-family: 'Tajawal', sans-serif; }
@@ -9,15 +8,14 @@
 .text-primary-custom { color: var(--primary-color) !important; }
 .border-primary-custom { border-color: var(--primary-color) !important; }
 .bg-primary-custom { background-color: var(--primary-color) !important; }
-.btn-primary-custom {
+.btn-primary-custom, .fixed-header-link {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
 }
-.btn-primary-custom:hover {
+.btn-primary-custom:hover, .fixed-header-link:hover {
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
-    color: white;
 }
 
 .video-animated-border {
@@ -25,6 +23,8 @@
     overflow: hidden;
     border-radius: 12px;
     padding: 3px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 .video-animated-border:before {
     content: '';
@@ -43,6 +43,18 @@
 .video-animated-border.show-effect:before { opacity: 1; }
 @keyframes rotate {
     100% { transform: translate(-50%, -50%) rotate(1turn); }
+}
+
+@media (min-width: 768px) {
+    .video-animated-border {
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 992px) {
+    .video-animated-border {
+        max-width: 400px;
+    }
 }
 
 .progress-bar-wrapper {
@@ -98,14 +110,14 @@
 
 .partners-marquee-item {
     flex-shrink: 0;
-    margin: 0 80px;
+    margin: 0 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
 .partners-marquee-item img {
-    max-height: 60px;
+    max-height: 150px;
     width: auto;
     filter: grayscale(100%);
     opacity: 0.6;
@@ -152,8 +164,6 @@
 }
 
 .fixed-header-link {
-    background-color: var(--primary-color);
-    color: white;
     padding: 8px 18px;
     border-radius: 20px;
     text-decoration: none;
@@ -164,8 +174,6 @@
 }
 
 .fixed-header-link:hover {
-    background-color: var(--primary-hover);
-    color: white;
     transform: scale(1.05);
 }
 
@@ -205,3 +213,116 @@ body {
     width: 150px;
 }
 
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    background-color: rgba(248, 249, 250, 0.7);
+    border: 1px solid rgba(184, 148, 31, 0.3);
+    border-radius: 8px;
+}
+
+.form-title {
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex: 1;
+    text-align: left;
+}
+
+.step-indicator-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(184, 148, 31, 0.1);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+
+.form-step .form-control:focus,
+.form-step .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(184, 148, 31, 0.25);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.form-actions .btn {
+    flex: 1;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(184, 148, 31, 0.05);
+}
+
+.radio-option input[type="radio"] {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"]:checked + label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background-color: rgba(184, 148, 31, 0.1);
+}
+
+.radio-option label {
+    flex: 1;
+    margin: 0;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .video-animated-border { max-width: 350px; }
+}
+
+@media (min-width: 992px) {
+    .video-animated-border { max-width: 400px; }
+}

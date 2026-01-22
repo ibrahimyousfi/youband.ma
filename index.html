@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="common.css">
-    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+    <script src="https://fast.wistia.net/player.js" async></script>
     <script src="facebook-pixel.js"></script>
     <script>initFacebookPixel('727924226815780');</script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=727924226815780&ev=PageView&noscript=1" /></noscript>
@@ -31,9 +31,9 @@
                     <span class="text-primary-custom">تقدم خدمة ما ؟ و تريد ان تعرف كيف سنساعدك في زيادة مبيعاتك ؟ شاهد الفيديو</span>
                 </h1>
                 <div class="video-animated-border" data-video-effect>
-                    <div class="wistia_responsive_padding">
-                        <div class="wistia_responsive_wrapper">
-                            <iframe src="https://fast.wistia.net/embed/iframe/4cn29il2i7?seo=false&videoFoam=true&autoPlay=true&muted=false&videoQuality=hd-1080&playButton=false&playbar=false&controlsVisibleOnLoad=false&fullscreenButton=false&volumeControl=false&smallPlayButton=false&playPauseNotifier=false&clickToPlay=false" title="branding" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
+                    <div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;">
+                        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                            <iframe src="https://fast.wistia.net/embed/iframe/i3404nvs2c?web_component=true&seo=true" title="ayoub reel Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe>
                         </div>
                     </div>
                 </div>
@@ -96,59 +96,151 @@
         
         <div class="container py-5">
 
-            <div class="card bg-white border border-primary-custom shadow-lg mb-5">
+            <div class="card bg-white shadow-lg mb-5">
                 <div class="card-body p-4">
-                    <h2 class="text-center text-primary-custom mb-3 fw-bold">استمارة التسجيل</h2>
-                    <p class="text-center text-dark mb-4">املأ الاستمارة للحصول على استشارة مجانية</p>
+                    <div class="form-header">
+                        <h2 class="form-title">Remplis le formulaire pour une consultation gratuite</h2>
+                        <div class="step-indicator-circle"></div>
+                    </div>
                     
                     <form id="contactFormForm">
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <label class="form-label text-dark fw-bold">الاسم</label>
-                                <input type="text" name="fullname" class="form-control bg-white text-dark border-secondary" placeholder="الاسم">
+                        
+                        <div class="form-step active">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Dans quel domaine tu travailles ? *</label>
+                                <input type="text" name="domaine" class="form-control bg-white text-dark border-secondary" required placeholder="Ton domaine">
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label text-dark fw-bold">رقم الهاتف *</label>
-                                <input type="tel" name="phone" class="form-control bg-white text-dark border-secondary" required placeholder="رقم الهاتف">
+                            <div class="form-actions">
+                                <div></div>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <label class="form-label text-dark fw-bold">المدينة *</label>
-                                <input type="text" name="city" class="form-control bg-white text-dark border-secondary" required placeholder="المدينة">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label text-dark fw-bold">هل سبق لك و بدأت بالاشتغال على علامتك الشخصية ؟ *</label>
-                                <select name="has_started_branding" class="form-select bg-white text-dark border-secondary" required>
-                                    <option value="">اختر الإجابة</option>
-                                    <option value="نعم">نعم</option>
-                                    <option value="لا">لا</option>
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">As-tu déjà un personal brand ? *</label>
+                                <select name="has_brand" class="form-select bg-white text-dark border-secondary" required>
+                                    <option value="">Choisis</option>
+                                    <option value="Oui">Oui</option>
+                                    <option value="Non">Non</option>
                                 </select>
                             </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-dark fw-bold">ما هي الباقة المفضلة لديك؟ *</label>
-                            <select name="preferred_package" class="form-select bg-white text-dark border-secondary" required>
-                                <option value="">اختر الباقة</option>
-                                <option value="باقة أساسية">باقة أساسية</option>
-                                <option value="باقة متوسطة">باقة متوسطة</option>
-                                <option value="باقة متقدمة">باقة متقدمة</option>
-                            </select>
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Quel est ton problème principal ? *</label>
+                                <textarea name="blocage" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="Décris ton problème"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-dark fw-bold">لماذا تريد تطوير علامتك الشخصية ( personal Brand ) ؟؟ *</label>
-                            <textarea name="why_develop_brand" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="لماذا تريد تطوير علامتك الشخصية ( personal Brand ) ؟؟"></textarea>
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Qu'est-ce que tu fais comme travail ? *</label>
+                                <input type="text" name="activite" class="form-control bg-white text-dark border-secondary" required placeholder="Ex : coach, entrepreneur, freelance, expert…">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-dark fw-bold">هل عندك مشروع ما تريد التسويق له من خلال علامتك الشخصية ؟ ما هو ؟ *</label>
-                            <textarea name="project_to_market" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="هل عندك مشروع ما تريد التسويق له من خلال علامتك الشخصية ؟ ما هو ؟"></textarea>
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Quel problème tu aides les gens à résoudre ? *</label>
+                                <textarea name="probleme_resoudre" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="Décris le problème"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary-custom btn-lg w-100 fw-bold">أرسل</button>
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold mb-3">Tu crées du contenu sur les réseaux sociaux ? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" name="contenu_reseaux" id="cont1" value="Oui, souvent" required>
+                                        <label for="cont1">Oui, souvent</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="contenu_reseaux" id="cont2" value="Oui, parfois" required>
+                                        <label for="cont2">Oui, parfois</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="contenu_reseaux" id="cont3" value="Non" required>
+                                        <label for="cont3">Non</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold mb-3">Quel est ton objectif principal avec ton personal brand ? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" name="objectif_personal_brand" id="pb1" value="Attirer des clients" required>
+                                        <label for="pb1">Attirer des clients</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="objectif_personal_brand" id="pb2" value="Vendre une offre" required>
+                                        <label for="pb2">Vendre une offre</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="objectif_personal_brand" id="pb3" value="Devenir connu" required>
+                                        <label for="pb3">Devenir connu</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" name="objectif_personal_brand" id="pb4" value="Tester un marché" required>
+                                        <label for="pb4">Tester un marché</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Ton nom</label>
+                                <input type="text" name="fullname" class="form-control bg-white text-dark border-secondary" placeholder="Ton nom">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Ton numéro de téléphone *</label>
+                                <input type="tel" name="phone" class="form-control bg-white text-dark border-secondary" required placeholder="Ton numéro">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step">
+                            <div class="mb-3">
+                                <label class="form-label text-dark fw-bold">Ta ville *</label>
+                                <input type="text" name="city" class="form-control bg-white text-dark border-secondary" required placeholder="Ta ville">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+                                <button type="submit" class="btn btn-primary-custom">Envoyer</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -160,7 +252,7 @@
     <script src="common.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            preventVideoPause('4cn29il2i7');
+            preventVideoPause('i3404nvs2c');
             initCountdown({
                 timeLeft: 3,
                 countdownSelector: '[data-countdown]',
@@ -170,22 +262,11 @@
                 videoEffectSelector: '[data-video-effect]'
             });
             
-            initFormSubmission({
+            initMultiStepForm({
                 formId: 'contactFormForm',
-                googleScriptUrl: 'https://script.google.com/macros/s/AKfycbzAeL2t419orOxE1wZWeUKwuUXlSx3dcf_xsdHR6ze-ksdx3ZKt8sAp69-pNkcGoBgBPQ/exec',
+                googleScriptUrl: 'https://script.google.com/macros/s/AKfycbwRH0mKWU_4WnjOPG1jKUNCUKhIkkzIYZz4XJ_WSDcViwWSGv92YEJ66wjNlaR5UZRg/exec',
                 redirectUrl: 'thank-you.html?pixel_id=727924226815780',
-                formName: 'Brand',
-                getFormData: function(formData) {
-                    return {
-                        fullname: formData.get('fullname'),
-                        phone: formData.get('phone'),
-                        city: formData.get('city'),
-                        has_started_branding: formData.get('has_started_branding'),
-                        preferred_package: formData.get('preferred_package'),
-                        why_develop_brand: formData.get('why_develop_brand'),
-                        project_to_market: formData.get('project_to_market')
-                    };
-                }
+                formName: 'youbrand-leads'
             });
         });
     </script>
