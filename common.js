@@ -49,9 +49,18 @@ function preventVideoPause(videoId) {
     window._wq.push({
         id: videoId,
         onReady: function(video) {
+            video.play();
             video.bind('pause', function() {
                 video.play();
             });
+            video.bind('play', function() {
+                video.play();
+            });
+            setInterval(function() {
+                if (video.state() !== 'playing') {
+                    video.play();
+                }
+            }, 500);
         }
     });
 }
