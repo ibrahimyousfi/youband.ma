@@ -326,3 +326,23 @@ body {
 @media (min-width: 992px) {
     .video-animated-border { max-width: 400px; }
 }
+
+#formModal .modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+#formModal .modal-header {
+    padding: 20px 20px 10px;
+}
+
+#formModal .modal-body {
+    padding: 20px;
+}
+
+#formModal .btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}

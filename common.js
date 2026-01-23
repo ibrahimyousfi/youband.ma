@@ -147,9 +147,15 @@ function initMultiStepForm(config) {
             }).catch(() => {});
         }
         
+        const modalElement = document.getElementById('formModal');
+        if (modalElement && typeof bootstrap !== 'undefined') {
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) modal.hide();
+        }
+        
         setTimeout(() => {
             window.location.href = redirectUrl;
-        }, 100);
+        }, 300);
     }
     
     const handleClick = (selector, handler) => {

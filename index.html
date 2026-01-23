@@ -95,15 +95,24 @@
         </div>
         
         <div class="container py-5">
+            <div class="text-center mb-5">
+                <button type="button" class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
+                    Remplis le formulaire pour une consultation gratuite
+                </button>
+            </div>
 
-            <div class="card bg-white shadow-lg mb-5">
-                <div class="card-body p-4">
-                    <div class="form-header">
-                        <h2 class="form-title">Remplis le formulaire pour une consultation gratuite</h2>
-                        <div class="step-indicator-circle"></div>
-                    </div>
-                    
-                    <form id="contactFormForm">
+            <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header border-0 pb-0">
+                            <div class="form-header w-100">
+                                <h2 class="form-title mb-0">Remplis le formulaire pour une consultation gratuite</h2>
+                                <div class="step-indicator-circle"></div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="contactFormForm">
                         
                         <div class="form-step active">
                             <div class="mb-3">
@@ -242,6 +251,8 @@
                             </div>
                         </div>
                     </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
