@@ -44,27 +44,6 @@ function initCountdown(config) {
     setTimeout(() => elements.videoEffect?.classList.add('show-effect'), 3000);
 }
 
-function preventVideoPause(videoId) {
-    window._wq = window._wq || [];
-    window._wq.push({
-        id: videoId,
-        onReady: function(video) {
-            video.play();
-            video.bind('pause', function() {
-                video.play();
-            });
-            video.bind('play', function() {
-                video.play();
-            });
-            setInterval(function() {
-                if (video.state() !== 'playing') {
-                    video.play();
-                }
-            }, 500);
-        }
-    });
-}
-
 function initMultiStepForm(config) {
     const { formId, googleScriptUrl, redirectUrl, formName } = config;
     
