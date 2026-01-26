@@ -129,6 +129,8 @@
 .fixed-header-logo {
     max-height: 50px;
     width: auto;
+    margin: 0 auto;
+    display: block;
 }
 
 .fixed-header-link {
@@ -155,6 +157,9 @@
         max-height: 40px;
     }
     
+    .fixed-header .container {
+        justify-content: center !important;
+    }
 }
 
 body {
