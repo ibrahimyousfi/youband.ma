@@ -1,82 +1,58 @@
 function initCountdown(config) {
-    const { timeLeft: initialTime, countdownSelector, progressBarSelector, countdownBoxSelector, mainContentSelector, videoEffectSelector } = config;
+    const { timeLeft: initialTime, mainContentSelector, videoEffectSelector } = config;
     
     let timeLeft = initialTime;
-    const elements = {
-        countdown: document.querySelector(countdownSelector),
-        progressBar: document.querySelector(progressBarSelector),
-        countdownBox: document.querySelector(countdownBoxSelector),
-        mainContent: document.querySelector(mainContentSelector),
-        videoEffect: document.querySelector(videoEffectSelector)
-    };
+    const mainContent = document.querySelector(mainContentSelector);
+    const videoEffect = document.querySelector(videoEffectSelector);
     
-    if (elements.mainContent) elements.mainContent.classList.add('d-none');
-    
-    const updateDisplay = () => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        if (elements.countdown) {
-            elements.countdown.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-        if (elements.progressBar) {
-            elements.progressBar.style.width = `${((initialTime - timeLeft) / initialTime * 100)}%`;
-        }
-    };
+    if (mainContent) mainContent.classList.add('d-none');
     
     const interval = setInterval(() => {
         timeLeft--;
-        updateDisplay();
         if (timeLeft <= 0) {
             clearInterval(interval);
-            if (elements.progressBar) elements.progressBar.style.width = '100%';
-            setTimeout(() => {
-                if (elements.countdownBox) elements.countdownBox.style.display = 'none';
-                if (elements.mainContent) {
-                    elements.mainContent.classList.remove('d-none');
-                    requestAnimationFrame(() => {
-                        window.scrollTo({ top: elements.mainContent.offsetTop - 50, behavior: 'smooth' });
-                    });
-                }
-            }, 300);
+            if (mainContent) {
+                mainContent.classList.remove('d-none');
+                window.scrollTo({ top: mainContent.offsetTop - 50, behavior: 'smooth' });
+            }
         }
     }, 1000);
     
-    setTimeout(() => elements.videoEffect?.classList.add('show-effect'), 3000);
+    setTimeout(() => videoEffect?.classList.add('show-effect'), 3000);
 }
 
 function initMultiStepForm(config) {
-    const { formId, googleScriptUrl, redirectUrl, formName } = config;
+    const { formId, redirectUrl, formName } = config;
     
     const form = document.getElementById(formId);
     if (!form) return;
     
-    const steps = form.querySelectorAll('.form-step');
     let currentStep = 0;
-    const totalSteps = steps.length;
-    
     const stepIndicator = document.querySelector('.step-indicator-circle');
     
+    function getCurrentSteps() {
+        const currentForm = document.getElementById(formId);
+        return currentForm ? currentForm.querySelectorAll('.form-step') : [];
+    }
+    
     function updateProgress() {
+        const totalSteps = getCurrentSteps().length;
         if (stepIndicator) stepIndicator.textContent = `${currentStep + 1} / ${totalSteps}`;
     }
     
     function showStep(stepIndex) {
-        steps.forEach((step, index) => {
+        const currentSteps = getCurrentSteps();
+        currentSteps.forEach((step, index) => {
             step.classList.toggle('active', index === stepIndex);
         });
         updateProgress();
-        
-        const currentStepElement = steps[stepIndex];
-        if (currentStepElement) {
-            const input = currentStepElement.querySelector('input, select, textarea');
-            if (input && input.type !== 'hidden') {
-                setTimeout(() => input.focus(), 100);
-            }
-        }
     }
     
     function validateStep() {
-        const fields = steps[currentStep].querySelectorAll('[required]');
+        const currentSteps = getCurrentSteps();
+        if (!currentSteps[currentStep]) return false;
+        
+        const fields = currentSteps[currentStep].querySelectorAll('[required]');
         let isValid = true;
         fields.forEach(field => {
             const isEmpty = !field.value.trim();
@@ -88,6 +64,7 @@ function initMultiStepForm(config) {
     
     function nextStep() {
         if (!validateStep()) return;
+        const totalSteps = getCurrentSteps().length;
         if (currentStep < totalSteps - 1) {
             showStep(++currentStep);
         } else {
@@ -99,14 +76,30 @@ function initMultiStepForm(config) {
         if (currentStep > 0) showStep(--currentStep);
     }
     
-    function getDeviceType() {
-        const ua = navigator.userAgent;
-        if (/iPad/.test(ua)) return 'Tablet';
-        return /Mobile|Android|iPhone/.test(ua) ? 'Mobile' : 'Desktop';
+    function closeModal() {
+        const modalElement = document.getElementById('formModal');
+        if (modalElement) {
+            modalElement.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                if (modal) modal.hide();
+            }
+        }
     }
     
     function submitForm() {
-        const formData = new FormData(form);
+        const currentForm = document.getElementById(formId);
+        if (!currentForm) return;
+        
+        const submitBtn = currentForm.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Envoi en cours...';
+        }
+        
+        const formData = new FormData(currentForm);
         const params = new URLSearchParams();
         
         params.append('form_name', formName || 'Form');
@@ -114,27 +107,20 @@ function initMultiStepForm(config) {
             if (value) params.append(key, value);
         }
         params.append('timestamp', new Date().toLocaleString('en-US'));
-        params.append('device_type', getDeviceType());
+        params.append('device_type', /iPad/.test(navigator.userAgent) ? 'Tablet' : /Mobile|Android|iPhone/.test(navigator.userAgent) ? 'Mobile' : 'Desktop');
         params.append('user_agent', navigator.userAgent || 'Unknown');
         
-        if (googleScriptUrl) {
-            fetch(googleScriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: params.toString()
-            }).catch(() => {});
-        }
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwRH0mKWU_4WnjOPG1jKUNCUKhIkkzIYZz4XJ_WSDcViwWSGv92YEJ66wjNlaR5UZRg/exec';
         
-        const modalElement = document.getElementById('formModal');
-        if (modalElement && typeof bootstrap !== 'undefined') {
-            const modal = bootstrap.Modal.getInstance(modalElement);
-            if (modal) modal.hide();
-        }
-        
-        setTimeout(() => {
+        fetch(googleScriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString()
+        }).finally(() => {
+            closeModal();
             window.location.href = redirectUrl;
-        }, 300);
+        });
     }
     
     const handleClick = (selector, handler) => {
@@ -150,6 +136,7 @@ function initMultiStepForm(config) {
     handleClick('.btn-prev', prevStep);
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         submitForm();
     });
     

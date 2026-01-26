@@ -259,17 +259,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             initCountdown({
-                timeLeft: 465,
-                countdownSelector: '[data-countdown]',
-                progressBarSelector: '[data-progress-bar]',
-                countdownBoxSelector: '[data-countdown-box]',
+                timeLeft: 3,
                 mainContentSelector: '[data-main-content]',
                 videoEffectSelector: '[data-video-effect]'
             });
             
             initMultiStepForm({
                 formId: 'contactFormForm',
-                googleScriptUrl: 'https://script.google.com/macros/s/AKfycbwRH0mKWU_4WnjOPG1jKUNCUKhIkkzIYZz4XJ_WSDcViwWSGv92YEJ66wjNlaR5UZRg/exec',
                 redirectUrl: 'thank-you.html?pixel_id=1467345031326030',
                 formName: 'youbrand-leads'
             });
