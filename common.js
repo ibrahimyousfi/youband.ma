@@ -2,23 +2,34 @@ function initCountdown(config) {
     const { timeLeft: initialTime, mainContentSelector, videoEffectSelector } = config;
     const mainContent = document.querySelector(mainContentSelector);
     const videoEffect = document.querySelector(videoEffectSelector);
+    const countdownTimer = document.getElementById('countdown-timer');
     
     if (mainContent) mainContent.classList.add('hidden');
     
     const startTime = Date.now();
     const targetTime = startTime + (initialTime * 1000);
     
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+    
     function checkTime() {
-        const elapsed = Date.now() - startTime;
-        const remaining = targetTime - Date.now();
+        const remaining = Math.max(0, Math.ceil((targetTime - Date.now()) / 1000));
+        
+        if (countdownTimer) {
+            countdownTimer.textContent = formatTime(remaining);
+        }
         
         if (remaining <= 0) {
+            if (countdownTimer) countdownTimer.textContent = '00:00';
             if (mainContent) {
                 mainContent.classList.remove('hidden');
                 window.scrollTo({ top: mainContent.offsetTop - 50, behavior: 'smooth' });
             }
         } else {
-            setTimeout(checkTime, Math.min(1000, remaining));
+            setTimeout(checkTime, 100);
         }
     }
     
