@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://fast.wistia.com">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="common.css">
@@ -20,16 +20,19 @@
     <script src="facebook-pixel.js"></script>
     <script>initFacebookPixel('1467345031326030');</script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1467345031326030&ev=PageView&noscript=1" /></noscript>
-    <script src="header.js"></script>
-    <script>window.headerConfig = {showLink: false};</script>
+    <header class="fixed top-0 left-0 right-0 bg-gray-50/90 backdrop-blur-sm shadow-md z-[1000] py-4">
+        <div class="max-w-7xl mx-auto px-5 flex justify-center items-center">
+            <img src="youbrand-logo.webp" alt="Logo" class="max-h-[50px] md:max-h-[50px] w-auto block mx-auto" width="215" height="70" loading="eager">
+        </div>
+    </header>
 </head>
-<body class="text-dark" style="background-color: #f8f9fa;">
+<body class="text-gray-800 bg-gray-50 pt-20">
 
-    <section class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-10">
-                <h1 class="h2 text-center mb-4 fw-bold">
-                    <span class="text-primary-custom">Si personne ne vous connaît, personne ne vous achètera : la vérité sur le personal branding</span>
+    <section class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex justify-center">
+            <div class="w-full max-w-4xl">
+                <h1 class="text-2xl md:text-3xl text-center mb-6 font-bold">
+                    <span class="text-[#B8941F]">Si personne ne vous connaît, personne ne vous achètera : la vérité sur le personal branding</span>
                 </h1>
                 <div class="video-animated-border" data-video-effect>
                     <div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
@@ -42,7 +45,7 @@
         </div>
     </section>
 
-    <main data-main-content class="d-none py-5" style="background-color: #f8f9fa;">
+    <main data-main-content class="hidden py-5" style="background-color: #f8f9fa;">
         <!-- Partners Marquee -->
         <div class="partners-marquee">
             <div class="partners-marquee-wrapper">
@@ -62,23 +65,23 @@
             </div>
         </div>
         
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <button type="button" class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="text-center mb-8">
+                <button type="button" onclick="document.getElementById('formModal').classList.remove('hidden'); document.body.style.overflow='hidden'" class="bg-[#B8941F] text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition">
                     Book ton appel
                 </button>
             </div>
             
-            <div class="mb-5">
-                <h2 class="text-center text-dark mb-3">Exemples de vidéos</h2>
+            <div class="mb-8">
+                <h2 class="text-center text-gray-800 mb-6 text-xl font-bold">Exemples de vidéos</h2>
                 
-                <div class="row g-4 justify-content-center">
-                    <div class="col-auto"><span class="wistia_embed wistia_async_eonudaj7vr popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
-                    <div class="col-auto"><span class="wistia_embed wistia_async_8g1mtdoe5g popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
-                    <div class="col-auto"><span class="wistia_embed wistia_async_aduz8ixang popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
-                    <div class="col-auto"><span class="wistia_embed wistia_async_e3vpkhyy8n popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
-                    <div class="col-auto"><span class="wistia_embed wistia_async_qqrhgx8wfd popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
-                    <div class="col-auto"><span class="wistia_embed wistia_async_17dshzhbm7 popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div><span class="wistia_embed wistia_async_eonudaj7vr popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                    <div><span class="wistia_embed wistia_async_8g1mtdoe5g popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                    <div><span class="wistia_embed wistia_async_aduz8ixang popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                    <div><span class="wistia_embed wistia_async_e3vpkhyy8n popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                    <div><span class="wistia_embed wistia_async_qqrhgx8wfd popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
+                    <div><span class="wistia_embed wistia_async_17dshzhbm7 popover=true playbar=false playButton=false controlsVisibleOnLoad=false fullscreenButton=false volumeControl=false smallPlayButton=false playPauseNotifier=false clickToPlay=false video-thumb"></span></div>
                 </div>
                 <script src="https://fast.wistia.com/embed/medias/eonudaj7vr.jsonp" async></script>
                 <script src="https://fast.wistia.com/embed/medias/8g1mtdoe5g.jsonp" async></script>
@@ -88,161 +91,166 @@
                 <script src="https://fast.wistia.com/embed/medias/17dshzhbm7.jsonp" async></script>
             </div>
             
-            <div class="text-center mt-5">
-                <button type="button" class="btn btn-primary-custom btn-lg" data-bs-toggle="modal" data-bs-target="#formModal">
+            <div class="text-center mt-8">
+                <button type="button" onclick="document.getElementById('formModal').classList.remove('hidden'); document.body.style.overflow='hidden'" class="bg-[#B8941F] text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition">
                     Book ton appel
                 </button>
             </div>
         </div>
         
-        <div class="container py-5">
+        <div class="max-w-7xl mx-auto px-4 py-12">
 
-            <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header border-0 pb-0">
-                            <div class="form-header w-100">
-                                <h2 class="form-title mb-0">Remplis le formulaire pour une consultation gratuite</h2>
-                                <div class="step-indicator-circle"></div>
-                            </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="contactFormForm">
-                        <div class="form-step active">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Dans quel domaine tu travailles ? *</label>
-                                <input type="text" name="domaine" class="form-control bg-white text-dark border-secondary" required placeholder="Ton domaine">
-                            </div>
-                            <div class="form-actions">
-                                <div></div>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+            <div id="formModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" onclick="if(event.target===this) {this.classList.add('hidden'); document.body.style.overflow=''}">
+                <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6 pb-4 border-b gap-4">
+                            <h2 class="text-lg md:text-xl font-bold text-[#B8941F] flex-1">Remplis le formulaire pour une consultation gratuite</h2>
+                            <div class="flex items-center gap-2 flex-shrink-0">
+                                <div class="step-indicator-circle flex items-center justify-center w-12 h-12 rounded-full bg-[#B8941F]/10 border-2 border-[#B8941F] text-[#B8941F] font-bold text-base"></div>
+                                <button type="button" onclick="document.getElementById('formModal').classList.add('hidden'); document.body.style.overflow=''" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
                             </div>
                         </div>
-
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">As-tu déjà un personal brand ? *</label>
-                                <select name="has_brand" class="form-select bg-white text-dark border-secondary" required>
-                                    <option value="">Choisis</option>
-                                    <option value="Oui">Oui</option>
-                                    <option value="Non">Non</option>
-                                </select>
+                        <div>
+                    <form id="contactFormForm" action="thank-you" method="POST">
+                        <input type="hidden" name="form_name" value="youbrand-leads">
+                        <div class="form-step block">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Dans quel domaine tu travailles ? *</label>
+                                <input type="text" name="domaine" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" required placeholder="Ton domaine">
                             </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            <div class="flex justify-end mt-6">
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
                             </div>
                         </div>
 
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Quel est ton problème principal ? *</label>
-                                <textarea name="blocage" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="Décris ton problème"></textarea>
-                            </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
-                            </div>
-                        </div>
-
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Qu'est-ce que tu fais comme travail ? *</label>
-                                <input type="text" name="activite" class="form-control bg-white text-dark border-secondary" required placeholder="Ex : coach, entrepreneur, freelance, expert…">
-                            </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
-                            </div>
-                        </div>
-
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Quel problème tu aides les gens à résoudre ? *</label>
-                                <textarea name="probleme_resoudre" class="form-control bg-white text-dark border-secondary" rows="4" required placeholder="Décris le problème"></textarea>
-                            </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
-                            </div>
-                        </div>
-
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold mb-3">Tu crées du contenu sur les réseaux sociaux ? *</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="contenu_reseaux" id="cont1" value="Oui, souvent" required>
-                                        <label for="cont1">Oui, souvent</label>
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-3">As-tu déjà un personal brand ? *</label>
+                                <div class="space-y-3">
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="has_brand" id="has_brand_oui" value="Oui" required class="mr-3">
+                                        <label for="has_brand_oui" class="cursor-pointer">Oui</label>
                                     </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="contenu_reseaux" id="cont2" value="Oui, parfois" required>
-                                        <label for="cont2">Oui, parfois</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="contenu_reseaux" id="cont3" value="Non" required>
-                                        <label for="cont3">Non</label>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="has_brand" id="has_brand_non" value="Non" required class="mr-3">
+                                        <label for="has_brand_non" class="cursor-pointer">Non</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
                             </div>
                         </div>
 
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold mb-3">Quel est ton objectif principal avec ton personal brand ? *</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="objectif_personal_brand" id="pb1" value="Attirer des clients" required>
-                                        <label for="pb1">Attirer des clients</label>
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Quel est ton problème principal ? *</label>
+                                <textarea name="blocage" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" rows="4" required placeholder="Décris ton problème"></textarea>
+                            </div>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Qu'est-ce que tu fais comme travail ? *</label>
+                                <input type="text" name="activite" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" required placeholder="Ex : coach, entrepreneur, freelance, expert…">
+                            </div>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Quel problème tu aides les gens à résoudre ? *</label>
+                                <textarea name="probleme_resoudre" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" rows="4" required placeholder="Décris le problème"></textarea>
+                            </div>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-3">Tu crées du contenu sur les réseaux sociaux ? *</label>
+                                <div class="space-y-3">
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="contenu_reseaux" id="cont1" value="Oui, souvent" required class="mr-3">
+                                        <label for="cont1" class="cursor-pointer">Oui, souvent</label>
                                     </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="objectif_personal_brand" id="pb2" value="Vendre une offre" required>
-                                        <label for="pb2">Vendre une offre</label>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="contenu_reseaux" id="cont2" value="Oui, parfois" required class="mr-3">
+                                        <label for="cont2" class="cursor-pointer">Oui, parfois</label>
                                     </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="objectif_personal_brand" id="pb3" value="Devenir connu" required>
-                                        <label for="pb3">Devenir connu</label>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="objectif_personal_brand" id="pb4" value="Tester un marché" required>
-                                        <label for="pb4">Tester un marché</label>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="contenu_reseaux" id="cont3" value="Non" required class="mr-3">
+                                        <label for="cont3" class="cursor-pointer">Non</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
                             </div>
                         </div>
 
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Ton nom</label>
-                                <input type="text" name="fullname" class="form-control bg-white text-dark border-secondary" placeholder="Ton nom">
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-3">Quel est ton objectif principal avec ton personal brand ? *</label>
+                                <div class="space-y-3">
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="objectif_personal_brand" id="pb1" value="Attirer des clients" required class="mr-3">
+                                        <label for="pb1" class="cursor-pointer">Attirer des clients</label>
+                                    </div>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="objectif_personal_brand" id="pb2" value="Vendre une offre" required class="mr-3">
+                                        <label for="pb2" class="cursor-pointer">Vendre une offre</label>
+                                    </div>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="objectif_personal_brand" id="pb3" value="Devenir connu" required class="mr-3">
+                                        <label for="pb3" class="cursor-pointer">Devenir connu</label>
+                                    </div>
+                                    <div class="radio-option flex items-center p-3 border-2 border-gray-300 rounded cursor-pointer hover:border-[#B8941F]">
+                                        <input type="radio" name="objectif_personal_brand" id="pb4" value="Tester un marché" required class="mr-3">
+                                        <label for="pb4" class="cursor-pointer">Tester un marché</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Ton numéro de téléphone *</label>
-                                <input type="tel" name="phone" class="form-control bg-white text-dark border-secondary" required placeholder="Ton numéro">
-                            </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="button" class="btn btn-primary-custom btn-next">Suivant</button>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
                             </div>
                         </div>
 
-                        <div class="form-step">
-                            <div class="mb-3">
-                                <label class="form-label text-dark fw-bold">Ta ville *</label>
-                                <input type="text" name="city" class="form-control bg-white text-dark border-secondary" required placeholder="Ta ville">
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Ton nom</label>
+                                <input type="text" name="fullname" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" placeholder="Ton nom">
                             </div>
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
-                                <button type="submit" class="btn btn-primary-custom">Envoyer</button>
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Ton numéro de téléphone *</label>
+                                <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" required placeholder="Ton numéro">
+                            </div>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="button" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90 btn-next">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step hidden">
+                            <div class="mb-4">
+                                <label class="block text-gray-800 font-bold mb-2">Ta ville *</label>
+                                <input type="text" name="city" class="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-800" required placeholder="Ta ville">
+                            </div>
+                            <div class="flex justify-between mt-6">
+                                <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded hover:opacity-90 btn-prev">Précédent</button>
+                                <button type="submit" class="bg-[#B8941F] text-white px-6 py-2 rounded hover:opacity-90">Envoyer</button>
                             </div>
                         </div>
                     </form>
@@ -254,27 +262,26 @@
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="common.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             initCountdown({
-                timeLeft: 465,
+                timeLeft: 2,
                 mainContentSelector: '[data-main-content]',
                 videoEffectSelector: '[data-video-effect]'
             });
             
             initMultiStepForm({
                 formId: 'contactFormForm',
-                redirectUrl: 'thank-you.html?pixel_id=1467345031326030',
+                redirectUrl: 'thank-you.html',
                 formName: 'youbrand-leads'
             });
         });
     </script>
 
-    <footer class="text-center py-4" style="background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
-        <div class="container">
-            <p class="mb-0 text-dark">© 2026 All Rights Reserved.</p>
+    <footer class="text-center py-4 bg-gray-50 border-t border-gray-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-0 text-gray-800">© 2026 All Rights Reserved.</p>
         </div>
     </footer>
 

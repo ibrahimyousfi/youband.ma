@@ -5,18 +5,6 @@
 
 * { font-family: 'Tajawal', sans-serif; }
 
-.text-primary-custom { color: var(--primary-color) !important; }
-.border-primary-custom { border-color: var(--primary-color) !important; }
-.bg-primary-custom { background-color: var(--primary-color) !important; }
-.btn-primary-custom, .fixed-header-link {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-}
-.btn-primary-custom:hover, .fixed-header-link:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
-}
 
 .video-animated-border {
     position: relative;
@@ -106,65 +94,6 @@
     }
 }
 
-.fixed-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(248, 249, 250, 0.9);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    padding: 15px 0;
-}
-
-.fixed-header .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    direction: ltr;
-}
-
-.fixed-header-logo {
-    max-height: 50px;
-    width: auto;
-    margin: 0 auto;
-    display: block;
-}
-
-.fixed-header-link {
-    padding: 8px 18px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.fixed-header-link:hover {
-    transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-    .fixed-header-link {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-    }
-    
-    .fixed-header-logo {
-        max-height: 40px;
-    }
-    
-    .fixed-header .container {
-        justify-content: center !important;
-    }
-}
-
-body {
-    padding-top: 80px;
-}
 
 .wistia_responsive_padding {
     padding: 56.25% 0 0 0;
@@ -186,73 +115,11 @@ body {
     width: 150px;
 }
 
-.form-step {
+#formModal.hidden {
     display: none;
 }
 
-.form-step.active {
-    display: block;
-}
 
-
-.form-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 30px;
-    padding: 15px 20px;
-    background-color: rgba(248, 249, 250, 0.7);
-    border: 1px solid rgba(184, 148, 31, 0.3);
-    border-radius: 8px;
-}
-
-.form-title {
-    margin: 0;
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.2rem;
-    flex: 1;
-    text-align: left;
-}
-
-.step-indicator-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgba(184, 148, 31, 0.1);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-
-.form-step .form-control:focus,
-.form-step .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(184, 148, 31, 0.25);
-}
-
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.form-actions .btn {
-    flex: 1;
-}
-
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
 
 .radio-option {
     display: flex;
@@ -281,7 +148,7 @@ body {
 
 
 .radio-option:has(input[type="radio"]:checked) {
-    border-color: var(--primary-color);
+    border-color: #B8941F !important;
     background-color: rgba(184, 148, 31, 0.1);
 }
 
@@ -300,22 +167,3 @@ body {
     .video-animated-border { max-width: 400px; }
 }
 
-#formModal .modal-content {
-    border-radius: 12px;
-    border: none;
-}
-
-#formModal .modal-header {
-    padding: 20px 20px 10px;
-}
-
-#formModal .modal-body {
-    padding: 20px;
-}
-
-#formModal .btn-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 10;
-}

@@ -1,18 +1,16 @@
 function initCountdown(config) {
     const { timeLeft: initialTime, mainContentSelector, videoEffectSelector } = config;
-    
     let timeLeft = initialTime;
     const mainContent = document.querySelector(mainContentSelector);
     const videoEffect = document.querySelector(videoEffectSelector);
     
-    if (mainContent) mainContent.classList.add('d-none');
+    if (mainContent) mainContent.classList.add('hidden');
     
     const interval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
+        if (--timeLeft <= 0) {
             clearInterval(interval);
             if (mainContent) {
-                mainContent.classList.remove('d-none');
+                mainContent.classList.remove('hidden');
                 window.scrollTo({ top: mainContent.offsetTop - 50, behavior: 'smooth' });
             }
         }
@@ -23,36 +21,28 @@ function initCountdown(config) {
 
 function initMultiStepForm(config) {
     const { formId, redirectUrl, formName } = config;
-    
     const form = document.getElementById(formId);
     if (!form) return;
     
     let currentStep = 0;
     const stepIndicator = document.querySelector('.step-indicator-circle');
-    
-    function getCurrentSteps() {
-        const currentForm = document.getElementById(formId);
-        return currentForm ? currentForm.querySelectorAll('.form-step') : [];
-    }
+    const steps = form.querySelectorAll('.form-step');
+    const totalSteps = steps.length;
     
     function updateProgress() {
-        const totalSteps = getCurrentSteps().length;
         if (stepIndicator) stepIndicator.textContent = `${currentStep + 1} / ${totalSteps}`;
     }
     
     function showStep(stepIndex) {
-        const currentSteps = getCurrentSteps();
-        currentSteps.forEach((step, index) => {
-            step.classList.toggle('active', index === stepIndex);
+        steps.forEach((step, i) => {
+            step.classList.toggle('hidden', i !== stepIndex);
+            step.classList.toggle('block', i === stepIndex);
         });
         updateProgress();
     }
     
     function validateStep() {
-        const currentSteps = getCurrentSteps();
-        if (!currentSteps[currentStep]) return false;
-        
-        const fields = currentSteps[currentStep].querySelectorAll('[required]');
+        const fields = steps[currentStep]?.querySelectorAll('[required]') || [];
         let isValid = true;
         fields.forEach(field => {
             const isEmpty = !field.value.trim();
@@ -64,7 +54,6 @@ function initMultiStepForm(config) {
     
     function nextStep() {
         if (!validateStep()) return;
-        const totalSteps = getCurrentSteps().length;
         if (currentStep < totalSteps - 1) {
             showStep(++currentStep);
         } else {
@@ -77,70 +66,35 @@ function initMultiStepForm(config) {
     }
     
     function closeModal() {
-        const modalElement = document.getElementById('formModal');
-        if (modalElement) {
-            modalElement.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) modal.hide();
-            }
+        const modal = document.getElementById('formModal');
+        if (modal) {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
         }
     }
     
     function submitForm() {
-        const currentForm = document.getElementById(formId);
-        if (!currentForm) return;
-        
-        const submitBtn = currentForm.querySelector('button[type="submit"]');
+        const submitBtn = form.querySelector('button[type="submit"]');
         if (submitBtn) {
             submitBtn.disabled = true;
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Envoi en cours...';
+            submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⟳</span>Envoi en cours...';
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
         }
         
-        const formData = new FormData(currentForm);
-        const params = new URLSearchParams();
-        
-        params.append('form_name', formName || 'Form');
-        for (const [key, value] of formData.entries()) {
-            if (value) params.append(key, value);
-        }
-        params.append('timestamp', new Date().toLocaleString('en-US'));
-        params.append('device_type', /iPad/.test(navigator.userAgent) ? 'Tablet' : /Mobile|Android|iPhone/.test(navigator.userAgent) ? 'Mobile' : 'Desktop');
-        params.append('user_agent', navigator.userAgent || 'Unknown');
-        
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwRH0mKWU_4WnjOPG1jKUNCUKhIkkzIYZz4XJ_WSDcViwWSGv92YEJ66wjNlaR5UZRg/exec';
-        
-        fetch(googleScriptUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params.toString()
-        }).finally(() => {
-            closeModal();
-            window.location.href = redirectUrl;
-        });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
     }
     
-    const handleClick = (selector, handler) => {
-        form.querySelectorAll(selector).forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                handler();
-            });
-        });
-    };
+    form.querySelectorAll('.btn-next').forEach(btn => {
+        btn.addEventListener('click', e => { e.preventDefault(); nextStep(); });
+    });
     
-    handleClick('.btn-next', nextStep);
-    handleClick('.btn-prev', prevStep);
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    form.querySelectorAll('.btn-prev').forEach(btn => {
+        btn.addEventListener('click', e => { e.preventDefault(); prevStep(); });
+    });
+    
+    form.addEventListener('submit', e => {
         submitForm();
     });
     
     showStep(0);
 }
-
-
