@@ -1,21 +1,28 @@
 function initCountdown(config) {
     const { timeLeft: initialTime, mainContentSelector, videoEffectSelector } = config;
-    let timeLeft = initialTime;
     const mainContent = document.querySelector(mainContentSelector);
     const videoEffect = document.querySelector(videoEffectSelector);
     
     if (mainContent) mainContent.classList.add('hidden');
     
-    const interval = setInterval(() => {
-        if (--timeLeft <= 0) {
-            clearInterval(interval);
+    const startTime = Date.now();
+    const targetTime = startTime + (initialTime * 1000);
+    
+    function checkTime() {
+        const elapsed = Date.now() - startTime;
+        const remaining = targetTime - Date.now();
+        
+        if (remaining <= 0) {
             if (mainContent) {
                 mainContent.classList.remove('hidden');
                 window.scrollTo({ top: mainContent.offsetTop - 50, behavior: 'smooth' });
             }
+        } else {
+            setTimeout(checkTime, Math.min(1000, remaining));
         }
-    }, 1000);
+    }
     
+    checkTime();
     setTimeout(() => videoEffect?.classList.add('show-effect'), 3000);
 }
 
